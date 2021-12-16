@@ -1,8 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletScript : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
     private Transform bullet;
     public float speed;
@@ -13,26 +13,23 @@ public class BulletScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        bullet.position += Vector3.up * speed;
+        bullet.position += Vector3.up * -speed;
 
-        if (bullet.position.y >= 10) 
+        if (bullet.position.y <= -10) 
         {
-            Destroy(gameObject);
+            Destroy(bullet.gameObject);
         }
     }
 
     void OnTriggerEnter2D(Collider2D other) 
     {
-        if (other.tag == "Enemy")
+        if (other.tag == "Player") 
         {
             Destroy(other.gameObject);
             Destroy(gameObject);
-            PlayerScore.playerScore += 5;
+            GameOver.isPlayerDead = true;
         }
- 
-       
-    
     }
 }
