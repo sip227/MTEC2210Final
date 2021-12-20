@@ -6,6 +6,9 @@ public class BulletScript : MonoBehaviour
 {
     private Transform bullet;
     public float speed;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +32,7 @@ public class BulletScript : MonoBehaviour
         {
             Destroy(other.gameObject);
             Destroy(gameObject);
+        
             PlayerScore.playerScore += 5;
         }
  

@@ -8,6 +8,8 @@ public class PlayerScript : MonoBehaviour
 
     public float speed;
     public float maxBound, minBound;
+    public AudioSource audioSource;
+    public AudioClip shootClip;
 
     public GameObject shot;
     public Transform shotSpawn;
@@ -50,6 +52,7 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && Time.time > nextFire) 
         {
             nextFire = Time.time + fireRate;
+            audioSource.PlayOneShot(shootClip);
             Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
         }
     }
